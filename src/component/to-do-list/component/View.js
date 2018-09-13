@@ -20,7 +20,7 @@ export default class View extends Component {
                         this.props.items.map(item =>
                             <tr key={item.id}>
                                 <td>{item.name}</td>
-                                <td>{item.tag}</td>
+                                <td>{item.tags}</td>
                                 <td>{item.dueDate}</td>
                                 <td>{item.status}</td>
                                 <td>details delete</td>
