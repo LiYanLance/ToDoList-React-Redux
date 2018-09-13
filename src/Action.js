@@ -6,8 +6,8 @@ const Action = {
     },
     TAG: {
         MEETING : "Meeting Review",
-        LEARNING : "learn skills",
-        PREPARATION : "preparation"
+        LEARNING : "Learn skills",
+        PREPARATION : "Preparation"
     }
 }
 

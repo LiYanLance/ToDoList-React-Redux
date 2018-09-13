@@ -1,0 +1,16 @@
+.modal-table {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.modal-table td:first-child{
+    width: 20%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 13px 0;
+}
+
+.modal-table input, select{
+    height: 30px;
+    width: 160px;
+}

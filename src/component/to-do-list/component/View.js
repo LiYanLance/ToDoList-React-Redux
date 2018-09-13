@@ -17,22 +17,22 @@ export default class View extends Component {
                     <Table striped bordered condensed hover>
                         <thead>
                         <tr>
-                            <td>Action</td>
-                            <td>Tags</td>
-                            <td>Due Date</td>
-                            <td>Status</td>
-                            <td>Actions</td>
+                            <td><span>Action</span></td>
+                            <td><span>Tags</span></td>
+                            <td><span>Due Date</span></td>
+                            <td><span>Status</span></td>
+                            <td><span>Actions</span></td>
                         </tr>
                         </thead>
                         <tbody>
                         {
                             this.props.items.map(item =>
                                 <tr key={item.id}>
-                                    <td>{item.name}</td>
-                                    <td>{item.tags}</td>
-                                    <td>{item.dueDate}</td>
-                                    <td>{item.status}</td>
-                                    <td>details delete</td>
+                                    <td><span>{item.name}</span></td>
+                                    <td><span>{item.tags.join(", ")}</span></td>
+                                    <td><span>{item.dueDate}</span></td>
+                                    <td><span>{item.status}</span></td>
+                                    <td><span>details delete</span></td>
                                 </tr>
                             )
                         }
