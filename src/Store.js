@@ -3,6 +3,8 @@ import Action from "./Action";
 
 const itemReducer = (state = [], action) => {
     switch (action.type) {
+        case "ADD_ITEM":
+            return [...state, action.item]
         default :
             return state;
     }
