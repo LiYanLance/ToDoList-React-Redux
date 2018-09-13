@@ -1,11 +1,13 @@
 import React, {Component} from "react";
+import {Table} from "react-bootstrap";
+import "../style.css"
 
 export default class View extends Component {
 
     render() {
         return (
-            <div>
-                <table>
+            <div className="to-do-list">
+                <Table striped bordered condensed hover>
                     <thead>
                     <tr>
                         <td>Action</td>
@@ -28,7 +30,8 @@ export default class View extends Component {
                         )
                     }
                     </tbody>
-                </table>
+                </Table>
+                <button className="to-do-list-btn">ADD</button>
             </div>
         )
     }
