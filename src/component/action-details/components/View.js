@@ -16,7 +16,7 @@ export default class View extends Component {
                 <div className="static-modal">
                     <Modal.Dialog>
                         <Modal.Header>
-                            <Modal.Title>Modal title</Modal.Title>
+                            <Modal.Title>ACTION DETAILS</Modal.Title>
                         </Modal.Header>
 
                         <Modal.Body>

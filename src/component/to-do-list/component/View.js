@@ -11,12 +11,7 @@ export default class View extends Component {
         super(props);
         this.state = {
             showAddModal: false,
-            items : this.props.items
         }
-    }
-
-    getActionsAfterSearch(itemsAfterSearch){
-        this.setState({items: itemsAfterSearch});
     }
 
     render() {
@@ -36,7 +31,7 @@ export default class View extends Component {
                         </thead>
                         <tbody>
                         {
-                            this.state.items.map(item =>
+                            this.props.items.map(item =>
                                 <tr key={item.id}>
                                     <td><span>{item.name}</span></td>
                                     <td><span>{item.tags.map(tag =>
@@ -59,7 +54,8 @@ export default class View extends Component {
                     <button className="to-do-list-btn" onClick={() => this.setState({showAddModal: true})}>ADD</button>
                 </div>
                 {
-                    this.state.showAddModal && <ActionAddModal closeModal={() => this.setState({showAddModal: false})}/>
+                    this.state.showAddModal && <ActionAddModal
+                        closeModal={() => this.setState({showAddModal: false})}/>
                 }
             </div>
         )

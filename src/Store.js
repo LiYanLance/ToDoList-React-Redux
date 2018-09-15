@@ -26,9 +26,10 @@ const itemReducer = (state = [], action) => {
         case "REMOVE_ITEM":
             return state.filter(item => item.id !== action.id)
         case "UPDATE_ITEM":
-            return state.map(item => item.id == action.item.id ? action.item : item)
-        case "FILTER_ITEM":
-            return state.filter(item => item.name.toLowerCase().includes(action.name.toLowerCase()))
+            return state.map(item => item.id == action.item.id ? action.item : item);
+        case "FILTER":
+            return state.map(item => item.name.toLowerCase().includes(action.name.toLowerCase()) ?
+                {...item, isVisible: true} : {...item, isVisible: false})
         default :
             return state;
     }
@@ -36,20 +37,20 @@ const itemReducer = (state = [], action) => {
 
 
 const defaultItems = [
-    {id: 1, name: "Action 1", tags: [Action.TAG.MEETING], dueDate: "2018-10-01", status: Action.STATUS.TODO},
+    {id: 1, name: "Meeting whit LY", tags: [Action.TAG.MEETING], dueDate: "2018-09-15", status: Action.STATUS.TODO},
     {
         id: 2,
-        name: "Action 2",
+        name: "Meeting with LL",
         tags: [Action.TAG.PREPARATION, Action.TAG.MEETING],
-        dueDate: "2018-10-02",
+        dueDate: "2018-09-16",
         status: Action.STATUS.IN_PROGRESS
     },
-    {id: 3, name: "Action 3", tags: [Action.TAG.LEARNING], dueDate: "2018-10-03", status: Action.STATUS.BLOCKED},
+    {id: 3, name: "Learn JS", tags: [Action.TAG.LEARNING], dueDate: "2018-09-16", status: Action.STATUS.BLOCKED},
     {
         id: 4,
-        name: "Action 4",
+        name: "Prepare Silds ",
         tags: [Action.TAG.LEARNING, Action.TAG.PREPARATION],
-        dueDate: "2018-10-04",
+        dueDate: "2018-09-01",
         status: Action.STATUS.TODO
     },
 ]

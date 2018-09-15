@@ -4,3 +4,32 @@
     /*height: 400px;*/
     float: left;
 }
+
+.statistic-sub-title{
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.statistic-sub-title:nth-child(3){
+    padding: 0 10px;
+}
+
+.statistic-sub-title:before{
+    content: "";
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 2px;
+}
+
+.statistic-sub-title[name="TO DO"]:before, .statistic-sub-title[name="Out of date"]:before{
+    background-color: orange;
+}
+
+.statistic-sub-title[name="In Progress"]:before, .statistic-sub-title[name="In 1 day"]:before{
+    background-color: green;
+}
+
+.statistic-sub-title[name="Blocked"]:before, .statistic-sub-title[name="In 3 days"]:before{
+    background-color: purple;
+}

@@ -2,7 +2,7 @@ import View from "./component/View";
 import {connect} from "react-redux"
 
 const mapStateToProps = (state) => ({
-    items: state
+    items: state.filter(item => !item.hasOwnProperty("isVisible") || item.isVisible === true)
 })
 
 const mapDispatchToProps = dispatch => ({

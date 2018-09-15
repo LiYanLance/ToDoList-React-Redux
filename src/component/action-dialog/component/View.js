@@ -11,7 +11,7 @@ export default class ActionDialogView extends Component {
                 <div className="static-modal">
                     <Modal.Dialog>
                         <Modal.Header>
-                            <Modal.Title>Details</Modal.Title>
+                            <Modal.Title>ADD ACTION</Modal.Title>
                         </Modal.Header>
 
                         <Modal.Body>
