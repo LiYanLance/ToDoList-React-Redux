@@ -1,27 +1,39 @@
 import {createStore} from "redux"
 import Action from "./Action";
 
-const itemReducer = (state = [], action) => {
-
-    const generateId = () => {
-        let id = 0;
-        if (state) {
-            if (state.length === state[state.length - 1].id) {
-                id = state.length + 1;
-            } else {
-                id = state.reduce((max, cur) => {
-                    return (max.id > cur.id ? max.id : cur.id)
-                }, 0) + 1;
-            }
+const generateId = (state) => {
+    let id = 0;
+    if (state) {
+        if (state.length === state[state.length - 1].id) {
+            id = state.length + 1;
         } else {
-            id = 1;
+            id = state.reduce((max, cur) => {
+                return (max.id > cur.id ? max.id : cur.id)
+            }, 0) + 1;
         }
-        return id;
+    } else {
+        id = 1;
     }
+    return id;
+}
 
+const fieldCheck = (item) => {
+    if(item.name === ""){
+        item.name = "Action " + item.id;
+    }
+    if(item.dueDate === ""){
+        const today = new Date();
+        const month = today.getMonth() < 9 ? '0'+ (today.getMonth() + 1) : (today.getMonth() + 1);
+        const day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate();
+        item.dueDate = today.getFullYear() + "-" + month + "-" + day;
+    }
+}
+
+const itemReducer = (state = [], action) => {
     switch (action.type) {
         case "ADD_ITEM":
-            action.item.id = generateId()
+            action.item.id = generateId(state)
+            fieldCheck(action.item)
             return [...state, action.item]
         case "REMOVE_ITEM":
             return state.filter(item => item.id !== action.id)

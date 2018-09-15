@@ -113,9 +113,7 @@ View.defaultProps = {
         date: "yyyy-mm-dd",
         status: "TO DO",
         tags: []
-    },
-    actionTags: allTags
+    }
 }
-
 
 export default View;

@@ -2,8 +2,9 @@ import Statistic from "./component/View";
 import {connect} from "react-redux"
 import Action from "../../Action";
 
-const colorOfSatistic = ["orange", "green", "purple"]
+const colorOfSatistic = ["orange", "green", "purple"];
 const daysToDuedate = ["Out of date", "In 1 day", "In 3 days"];
+const actionStatus = ["TO DO", "In Progress", "Blocked"];
 
 const getStatisticDataOfStatus = (state) => {
     let map = new Map();
@@ -13,8 +14,10 @@ const getStatisticDataOfStatus = (state) => {
             map.set(cur.status, count)
         });
     let i = 0;
-    return Object.values(Action.STATUS).map(stat =>
-        ({title: stat, value: map.has(stat) ? map.get(stat) : 0, color: colorOfSatistic[i++]}))
+    return Object.values(Action.STATUS)
+        .filter(day => map.has(day))
+        .map(stat => ({title: stat, value: map.get(stat),
+            color: colorOfSatistic[actionStatus.indexOf(stat)]}))
 }
 
 const getStatisticDataOfDueData = (state) => {
@@ -36,8 +39,10 @@ const getStatisticDataOfDueData = (state) => {
         });
     let i = 0;
 
-    return daysToDuedate.map(days =>
-        ({title: days, value: map.has(days) ? map.get(days) : 0, color: colorOfSatistic[i++]}))
+    return daysToDuedate
+        .filter(day => map.has(day))
+        .map(days => ({title: days, value: map.get(days),
+            color: colorOfSatistic[daysToDuedate.indexOf(days)]}))
 }
 
 

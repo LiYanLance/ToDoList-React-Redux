@@ -43,7 +43,8 @@ export default class View extends Component {
                                     <td>
                                         <span>
                                             <Link to={`/action/${item.id}`}>Details</Link>
-                                            <a href="javascript:void(0);" onClick={() => this.props.onDeleteItem(item.id)}>Delete</a>
+                                            <a href="javascript:void(0);"
+                                               onClick={() => this.props.onDeleteItem(item.id)}>Delete</a>
                                         </span>
                                     </td>
                                 </tr>
