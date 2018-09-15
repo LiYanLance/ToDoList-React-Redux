@@ -5,8 +5,8 @@ const Action = {
         BLOCKED : "Blocked"
     },
     TAG: {
-        MEETING : "Meeting Review",
-        LEARNING : "Learn skills",
+        MEETING : "Meeting",
+        LEARNING : "Learning",
         PREPARATION : "Preparation"
     }
 }

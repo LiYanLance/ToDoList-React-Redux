@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {Table} from "react-bootstrap";
 import "../style.css"
-import ActionAddModal from "../../action-details"
+import ActionAddModal from "../../action-dialog"
+import {Link} from "react-router-dom";
 
 export default class View extends Component {
 
@@ -29,10 +30,18 @@ export default class View extends Component {
                             this.props.items.map(item =>
                                 <tr key={item.id}>
                                     <td><span>{item.name}</span></td>
-                                    <td><span>{item.tags.join(", ")}</span></td>
+                                    <td><span>{item.tags.map(tag =>
+                                        <div className="to-do-list-tag">{tag}</div>)}
+                                        </span>
+                                    </td>
                                     <td><span>{item.dueDate}</span></td>
                                     <td><span>{item.status}</span></td>
-                                    <td><span>details delete</span></td>
+                                    <td>
+                                        <span>
+                                            <Link to={`/action/${item.id}`}>Details</Link>
+                                            <a href="javascript:void(0);" onClick={() => this.props.onDeleteItem(item.id)}>Delete</a>
+                                        </span>
+                                    </td>
                                 </tr>
                             )
                         }

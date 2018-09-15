@@ -5,4 +5,8 @@ const mapStateToProps = (state) => ({
     items: state
 })
 
-export default connect(mapStateToProps)(View)
+const mapDispatchToProps = dispatch => ({
+    onDeleteItem: id => dispatch({type: "REMOVE_ITEM", id: id})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(View)

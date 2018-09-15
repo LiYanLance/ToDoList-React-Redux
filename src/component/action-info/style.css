@@ -1,0 +1,31 @@
+
+.action-info{
+    height: 230px;
+    line-height: 40px;
+}
+
+.action-info-left-side{
+    margin-left: 20px;
+    width: 100px;
+    float: left;
+}
+
+.action-info-right-side{
+    width: calc(100% - 145px);
+    float: left;
+}
+
+.action-info-left-side > div, .action-info-right-side > div{
+    height: 45px;
+    margin: 5px 0;
+}
+
+.action-info input, select{
+    height: 30px;
+    width: 160px;
+}
+
+.action-info-right-side > div:last-child{
+    line-height: initial;
+}
+

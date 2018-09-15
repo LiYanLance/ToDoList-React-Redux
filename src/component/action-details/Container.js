@@ -1,4 +1,4 @@
-import View from "./component/View";
+import View from "./components/View";
 import {connect} from "react-redux"
 
 const mapStateToProps = (state) => ({
@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onAddItem: item => dispatch({type: "ADD_ITEM", item})
+    onUpdateItem : newItem => dispatch({type: "UPDATE_ITEM", item: newItem}),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(View)
