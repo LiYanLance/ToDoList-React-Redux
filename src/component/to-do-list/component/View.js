@@ -3,6 +3,7 @@ import {Table} from "react-bootstrap";
 import "../style.css"
 import ActionAddModal from "../../action-dialog"
 import {Link} from "react-router-dom";
+import SearchBar from "../../search-bar"
 
 export default class View extends Component {
 
@@ -12,9 +13,13 @@ export default class View extends Component {
     }
 
     render() {
+
+
+
         return (
             <div>
                 <div className="to-do-list">
+                    <SearchBar/>
                     <Table striped bordered condensed hover>
                         <thead>
                         <tr>

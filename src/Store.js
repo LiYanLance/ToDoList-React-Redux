@@ -27,10 +27,13 @@ const itemReducer = (state = [], action) => {
             return state.filter(item => item.id !== action.id)
         case "UPDATE_ITEM":
             return state.map(item => item.id == action.item.id ? action.item : item)
+        case "FILTER_ITEM":
+            return state.filter(item => item.name.toLowerCase().includes(action.name.toLowerCase()))
         default :
             return state;
     }
 }
+
 
 const defaultItems = [
     {id: 1, name: "Action 1", tags: [Action.TAG.MEETING], dueDate: "2018-10-01", status: Action.STATUS.TODO},
