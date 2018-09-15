@@ -38,7 +38,7 @@ const getStatisticDataOfDueData = (state) => {
     let i = 0;
 
     return daysToDuedate.map(days =>
-        ({title: days, value: map.get(days), color: colorOfStatus[i++]}))
+        ({title: days, value: map.has(days) ? map.get(days) : 0, color: colorOfStatus[i++]}))
 }
 
 

@@ -9,17 +9,21 @@ export default class View extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showAddModal: false}
+        this.state = {
+            showAddModal: false,
+            items : this.props.items
+        }
+    }
+
+    getActionsAfterSearch(itemsAfterSearch){
+        this.setState({items: itemsAfterSearch});
     }
 
     render() {
-
-
-
         return (
             <div>
                 <div className="to-do-list">
-                    <SearchBar/>
+                    <SearchBar onSearch={(its) => this.getActionsAfterSearch(its)}/>
                     <Table striped bordered condensed hover>
                         <thead>
                         <tr>
@@ -32,7 +36,7 @@ export default class View extends Component {
                         </thead>
                         <tbody>
                         {
-                            this.props.items.map(item =>
+                            this.state.items.map(item =>
                                 <tr key={item.id}>
                                     <td><span>{item.name}</span></td>
                                     <td><span>{item.tags.map(tag =>
