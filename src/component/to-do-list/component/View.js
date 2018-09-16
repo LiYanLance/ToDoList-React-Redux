@@ -11,6 +11,12 @@ export default class View extends Component {
         super(props);
         this.state = {
             showAddModal: false,
+            clazzNameOfTitle: {
+                name: "to-do-list-title-asc",
+                tags: "to-do-list-title-asc",
+                dueDate: "to-do-list-title-asc",
+                status: "to-do-list-title-asc"
+            }
         }
     }
 
@@ -18,14 +24,14 @@ export default class View extends Component {
         return (
             <div>
                 <div className="to-do-list">
-                    <SearchBar onSearch={(its) => this.getActionsAfterSearch(its)}/>
+                    <SearchBar/>
                     <Table striped bordered condensed hover>
                         <thead>
-                        <tr>
-                            <td><span>Action</span></td>
-                            <td><span>Tags</span></td>
-                            <td><span>Due Date</span></td>
-                            <td><span>Status</span></td>
+                        <tr onClick={(evt) => this.sortByField(evt.target)}>
+                            <td><span className={this.state.clazzNameOfTitle.name} title="name">Action</span></td>
+                            <td><span className={this.state.clazzNameOfTitle.tags}  title="tags">Tags</span></td>
+                            <td><span className={this.state.clazzNameOfTitle.dueDate}  title="dueDate">Due Date</span></td>
+                            <td><span className={this.state.clazzNameOfTitle.status}  title="status">Status</span></td>
                             <td><span>Actions</span></td>
                         </tr>
                         </thead>
@@ -43,8 +49,7 @@ export default class View extends Component {
                                     <td>
                                         <span>
                                             <Link to={`/action/${item.id}`}>Details</Link>
-                                            <a href="javascript:void(0);"
-                                               onClick={() => this.props.onDeleteItem(item.id)}>Delete</a>
+                                            <a href="javascript:void(0);" onClick={() => this.props.onDeleteItem(item.id)}>Delete</a>
                                         </span>
                                     </td>
                                 </tr>
@@ -60,5 +65,29 @@ export default class View extends Component {
                 }
             </div>
         )
+    }
+
+    sortByField(target) {
+        if (target.title) {
+            if (target.className.includes("to-do-list-title-asc")) {
+                this.props.sortItemsDesc(target.title)
+                const stateObj = Object.assign({}, this.state.clazzNameOfTitle)
+                for(let field in stateObj){
+                    stateObj[field] = stateObj[field].includes("active") ?
+                        stateObj[field].replace("-active","") : stateObj[field]
+                }
+                stateObj[target.title] = "to-do-list-title-desc-active";
+                this.setState({clazzNameOfTitle : stateObj});
+            } else {
+                this.props.sortItemsAsc(target.title)
+                const stateObj = Object.assign({}, this.state.clazzNameOfTitle)
+                for(let field in stateObj){
+                    stateObj[field] = stateObj[field].includes("active") ?
+                        stateObj[field].replace("-active","") : stateObj[field]
+                }
+                stateObj[target.title] = "to-do-list-title-asc-active";
+                this.setState({clazzNameOfTitle : stateObj});
+            }
+        }
     }
 }

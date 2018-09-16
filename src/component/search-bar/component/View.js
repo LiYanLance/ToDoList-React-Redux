@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "../style.css"
 import {Button} from "react-bootstrap";
 
-export default class ActionDialogView extends Component {
+export default class SearchBar extends Component {
 
     state = {
         showAdvanced: false
@@ -13,7 +13,7 @@ export default class ActionDialogView extends Component {
             <div>
                 <div className="searchBox">
                     <i className="icon-search"></i>
-                    <input placeholder="Search..." type="text" class="filterBar"
+                    <input placeholder="Search..." type="text" className="filterBar"
                            onKeyUp={(evt) => this.props.searching(evt.target.value)}/>
                     <a href="javascript:void(0)"
                        onClick={() => this.setState({showAdvanced: !this.state.showAdvanced})}>Advanced</a>

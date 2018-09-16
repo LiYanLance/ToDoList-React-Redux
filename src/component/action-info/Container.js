@@ -4,8 +4,8 @@ import Action from "../../Action";
 
 const allTags = Object.values(Action.TAG).map(key => ({value: key, label: key}));
 
-const mapStateToProps = (state) => ({
-    items: state,
+const mapStateToProps = ({items}) => ({
+    // items: items,
     allTags: allTags
 })
 

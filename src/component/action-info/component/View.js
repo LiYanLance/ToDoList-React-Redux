@@ -52,7 +52,7 @@ class View extends Component {
                                      value={selectedOption}
                                      onChange={this.handleChange}
                                      isMulti
-                                     options={this.props.actionTags}/></div>
+                                     options={this.props.allTags}/></div>
                     </div>
                 </div>
 

@@ -3,7 +3,7 @@ import PieChart from "react-svg-piechart"
 import "../style.css"
 import SearchBar from "../../search-bar";
 
-export default class ActionDialogView extends Component {
+export default class StatisticView extends Component {
 
     render() {
         return (
@@ -13,7 +13,8 @@ export default class ActionDialogView extends Component {
                     <h3>Status</h3>
                     {
                         this.props.statusOfActions.map(stat => (
-                            <div className="statistic-sub-title" name={stat.title}> {stat.title} : {stat.value}</div>
+                            <div className="statistic-sub-title"
+                                 name={stat.title}> {stat.title} : {stat.value}</div>
                         ))
                     }
                     <PieChart data={this.props.statusOfActions} expandOnHover/>
@@ -22,7 +23,8 @@ export default class ActionDialogView extends Component {
                     <h3>Duedate</h3>
                     {
                         this.props.dueDateOfAction.map(stat => (
-                            <div className="statistic-sub-title" name={stat.title}>{stat.title} : {stat.value}</div>
+                            <div className="statistic-sub-title"
+                                 name={stat.title}>{stat.title} : {stat.value}</div>
                         ))
                     }
                     <PieChart data={this.props.dueDateOfAction} expandOnHover/>

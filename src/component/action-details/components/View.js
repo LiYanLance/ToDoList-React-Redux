@@ -9,8 +9,6 @@ export default class View extends Component {
 
         const itemRef = this.props.items.find(item => item.id == parseInt(this.props.match.params.id));
         const item = Object.assign({}, itemRef);
-        console.log(item)
-
         return (
             <div>
                 <div className="static-modal">
@@ -25,7 +23,6 @@ export default class View extends Component {
 
                     </Modal.Dialog>
                 </div>
-                ;
             </div>
         )
     }

@@ -6,4 +6,4 @@ const mapDispatchToProps = dispatch => ({
     filterByDate: (start, end) => dispatch({type:"FILTER_DATE", startDate: start, endDate: end})
 })
 
-export default connect(() => {}, mapDispatchToProps)(SearchBar)
+export default connect(() => ({}), mapDispatchToProps)(SearchBar)

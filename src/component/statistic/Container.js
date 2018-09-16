@@ -54,9 +54,9 @@ const getDifferenceOfTwoDay = (dueDate, today) => {
 }
 
 
-const mapStateToProps = (state) => ({
-    statusOfActions: getStatisticDataOfStatus(state),
-    dueDateOfAction: getStatisticDataOfDueData(state)
+const mapStateToProps = ({items}) => ({
+    statusOfActions: getStatisticDataOfStatus(items),
+    dueDateOfAction: getStatisticDataOfDueData(items)
 })
 
 export default connect(mapStateToProps)(Statistic)
