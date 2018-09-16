@@ -50,3 +50,8 @@
 .search-advanced-box label:nth-child(3){
     padding-left: 20px;
 }
+
+.search-advanced-box button{
+    margin-left: 30px;
+
+}

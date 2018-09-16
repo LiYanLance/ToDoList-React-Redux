@@ -21,15 +21,14 @@
     display: inline-block;
     margin-right: 2px;
 }
-
 .statistic-sub-title[name="TO DO"]:before, .statistic-sub-title[name="Out of date"]:before{
-    background-color: orange;
+    background-color: #7472AE;
 }
 
 .statistic-sub-title[name="In Progress"]:before, .statistic-sub-title[name="In 1 day"]:before{
-    background-color: green;
+    background-color: #4A9B7A;
 }
 
 .statistic-sub-title[name="Blocked"]:before, .statistic-sub-title[name="In 3 days"]:before{
-    background-color: purple;
+    background-color: #CB6627;
 }

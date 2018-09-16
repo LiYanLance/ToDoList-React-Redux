@@ -42,6 +42,11 @@ const itemReducer = (state = [], action) => {
         case "FILTER":
             return state.map(item => item.name.toLowerCase().includes(action.name.toLowerCase()) ?
                 {...item, isVisible: true} : {...item, isVisible: false})
+        case "FILTER_DATE":
+            return state.map(item =>
+                new Date(item.dueDate).getTime() >= new Date(action.startDate).getTime()
+                && new Date(item.dueDate).getTime() <= new Date(action.endDate).getTime() ?
+                {...item, isVisible: true} : {...item, isVisible: false})
         default :
             return state;
     }

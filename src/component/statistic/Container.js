@@ -2,7 +2,7 @@ import Statistic from "./component/View";
 import {connect} from "react-redux"
 import Action from "../../Action";
 
-const colorOfSatistic = ["orange", "green", "purple"];
+const colorOfSatistic = ["#7472AE", "#4A9B7A", "#CB6627"];
 const daysToDuedate = ["Out of date", "In 1 day", "In 3 days"];
 const actionStatus = ["TO DO", "In Progress", "Blocked"];
 
