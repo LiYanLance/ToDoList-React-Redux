@@ -12,11 +12,10 @@ export default class SearchBar extends Component {
         return (
             <div>
                 <div className="searchBox">
-                    <i className="icon-search"></i>
+                    <i className="icon-search"/>
                     <input placeholder="Search..." type="text" className="filterBar"
                            onKeyUp={(evt) => this.props.searching(evt.target.value)}/>
-                    <a href="javascript:void(0)"
-                       onClick={() => this.setState({showAdvanced: !this.state.showAdvanced})}>Advanced</a>
+                    <a href="#!" onClick={() => this.setState({showAdvanced: !this.state.showAdvanced})}>Advanced</a>
                 </div>
                 {
                     this.state.showAdvanced &&

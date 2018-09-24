@@ -1,16 +1,17 @@
 import React from "react";
 import {shallow} from "enzyme";
-import View from "../component/View"
+import ActionInfo from "../component/ActionInfo"
 import '../../../setUpTest'
 
-describe("to do list view", () => {
+describe("Action info view", () => {
     let component;
+
     beforeAll(() => {
-        component = shallow(<View items={[]}/>);
+        component = shallow(<ActionInfo items={[]}/>);
     })
 
     it("should render actions info in correct class", () => {
-        expect(component.find('.to-do-list').length).toBe(1)
+        expect(component.find('.action-info').length).toBe(1)
     })
 
 })

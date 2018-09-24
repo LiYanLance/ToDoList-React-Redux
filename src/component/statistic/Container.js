@@ -4,16 +4,16 @@ import Action from "../../Action";
 
 const colorOfSatistic = ["#7472AE", "#4A9B7A", "#CB6627"];
 const daysToDuedate = ["Out of date", "In 1 day", "In 3 days"];
-const actionStatus = ["TO DO", "In Progress", "Blocked"];
+// const actionStatus = ["TO DO", "In Progress", "Blocked"];
+const actionStatus = ["To Do", "Finished", "Blocked"];
 
-const getStatisticDataOfStatus = (state) => {
+const getStatisticDataOfStatus = (todos) => {
     let map = new Map();
-    state.filter(item => !item.hasOwnProperty("isVisible") || item.isVisible === true)
+    todos.filter(item => !item.hasOwnProperty("isVisible") || item.isVisible === true)
         .forEach(cur => {
             const count = map.has(cur.status) ? map.get(cur.status) + 1 : 1;
             map.set(cur.status, count)
         });
-    let i = 0;
     return Object.values(Action.STATUS)
         .filter(day => map.has(day))
         .map(stat => ({title: stat, value: map.get(stat),
@@ -37,7 +37,6 @@ const getStatisticDataOfDueData = (state) => {
             const count = map.has(day) ? map.get(day) + 1 : 1;
             map.set(day, count)
         });
-    let i = 0;
 
     return daysToDuedate
         .filter(day => map.has(day))
@@ -47,16 +46,16 @@ const getStatisticDataOfDueData = (state) => {
 
 
 const getDifferenceOfTwoDay = (dueDate, today) => {
-    const dueD = new Date(dueDate.replace(new RegExp('-', 'g'), '/'));
+    // const dueD = new Date(dueDate.replace(new RegExp('-', 'g'), '/'));
     const one_day = 1000 * 60 * 60 * 24;
-    const difference_ms = dueD.getTime() - today.getTime();
+    const difference_ms = dueDate- today.getTime();
     return Math.ceil(difference_ms / one_day);
 }
 
 
 const mapStateToProps = ({items}) => ({
-    statusOfActions: getStatisticDataOfStatus(items),
-    dueDateOfAction: getStatisticDataOfDueData(items)
+    statusOfActions: getStatisticDataOfStatus(items.content || []),
+    dueDateOfAction: getStatisticDataOfDueData(items.content || [])
 })
 
 export default connect(mapStateToProps)(Statistic)

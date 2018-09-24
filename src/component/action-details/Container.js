@@ -4,7 +4,7 @@ import withAuthentication from '../../hoc/withAuthentication'
 
 const mapStateToProps = ({items, isAuthenticated}) => ({
     items: items,
-    logged: isAuthenticated
+    logged: isAuthenticated.authorization
 })
 
 const mapDispatchToProps = dispatch => ({

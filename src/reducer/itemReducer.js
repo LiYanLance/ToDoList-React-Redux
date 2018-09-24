@@ -28,25 +28,6 @@ const fieldCheck = (item) => {
     }
 };
 
-const defaultItems = [
-    {id: 1, name: "Meeting whit LY", tags: [Action.TAG.MEETING], dueDate: "2018-09-15", status: Action.STATUS.TODO},
-    {
-        id: 2,
-        name: "Meeting with LL",
-        tags: [Action.TAG.PREPARATION, Action.TAG.MEETING],
-        dueDate: "2018-09-16",
-        status: Action.STATUS.IN_PROGRESS
-    },
-    {id: 3, name: "Learn JS", tags: [Action.TAG.LEARNING], dueDate: "2018-09-16", status: Action.STATUS.BLOCKED},
-    {
-        id: 4,
-        name: "Prepare Silds ",
-        tags: [Action.TAG.LEARNING, Action.TAG.PREPARATION],
-        dueDate: "2018-09-01",
-        status: Action.STATUS.TODO
-    },
-];
-
 const fieldAscSort = (items, field) => [...items].sort((a,b) => {
     if(field === "tags"){
         return a[field].length - b[field].length
@@ -61,9 +42,30 @@ const fieldDescSort = (items, field) => items.sort((a,b) => {
     return b[field].localeCompare(a[field])
 });
 
+const defaultItems = [
+    {id: 1, name: "Meeting whit LY", tags: [Action.TAG.MEETING], dueDate: "2018-09-15", status: Action.STATUS.TODO},
+    {
+        id: 2,
+        name: "Meeting with LL",
+        tags: [Action.TAG.PREPARATION, Action.TAG.MEETING],
+        dueDate: "2018-09-16",
+        status: Action.STATUS.IN_PROGRESS
+    },
+    {id: 3, name: "Learn JS", tags: [Action.TAG.LEARNING], dueDate: "2018-09-16", status: Action.STATUS.BLOCKED},
+    {
+        id: 4,
+        name: "Prepare Slides ",
+        tags: [Action.TAG.LEARNING, Action.TAG.PREPARATION],
+        dueDate: "2018-09-01",
+        status: Action.STATUS.TODO
+    },
+];
 
-const itemReducer = (state = defaultItems, action) => {
+
+const itemReducer = (state = {}, action) => {
     switch (action.type) {
+        case 'LOAD_ITEMS':
+            return action.payload;
         case "ADD_ITEM":
             action.item.id = generateId(state);
             fieldCheck(action.item);
