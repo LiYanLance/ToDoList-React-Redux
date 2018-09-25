@@ -4,7 +4,6 @@ import Action from "../../../Action";
 import Select from 'react-select';
 import "../style.css"
 import {Link} from "react-router-dom";
-import {addTodosToAPIServer, updateTodosToAPIServer, getTagsFromAPIServer} from "../../../webHander/todoHandler";
 
 class ActionInfo extends Component {
 
@@ -16,16 +15,13 @@ class ActionInfo extends Component {
         this.setState({selectedOption});
     }
 
-    componentDidMount(){
-        getTagsFromAPIServer(this.props.loadTags)
+    componentWillMount(){
+        this.props.loadTags()
     }
 
     render() {
 
         let {selectedOption} = this.state;
-
-        console.log(this.props.allTags)
-
         return (
             <div>
                 <div className="action-info">
@@ -71,8 +67,7 @@ class ActionInfo extends Component {
                                 this.props.closeModal()
                             }}>CANCEL</Button>
                             <Button bsStyle="primary" onClick={() => {
-                                addTodosToAPIServer(this.props.loadItems, this.getNewItemInfo())
-                                // this.props.onAddItem(this.getNewItemInfo())
+                                this.props.onAddItem(this.getNewItemInfo())
                                 this.props.closeModal();
                             }}>OK
                             </Button>
@@ -84,8 +79,7 @@ class ActionInfo extends Component {
                             </Link>
                             <Link to="/">
                                 <Button bsStyle="primary" onClick={ () =>{
-                                    updateTodosToAPIServer(this.props.loadItems, this.getNewItemInfo())
-                                    //this.props.onUpdateItem(this.getNewItemInfo())
+                                    this.props.onUpdateItem(this.getNewItemInfo())
                                 }}>OK</Button>
                             </Link>
                         </div>

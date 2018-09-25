@@ -1,13 +1,9 @@
 import SearchBar from "./component/View";
 import {connect} from "react-redux"
+import {searchTodosFromTodoService} from "../../api/todoService";
 
 const mapDispatchToProps = dispatch => ({
-    loadItems: payload => dispatch({type: "LOAD_ITEMS", payload: payload}),
-
-
-
-    searching: (name) => dispatch({type: "FILTER", name: name}),
-    filterByDate: (start, end) => dispatch({type:"FILTER_DATE", startDate: start, endDate: end})
+    filter: (name, startDate, endDate) => searchTodosFromTodoService(dispatch, name, startDate, endDate)
 })
 
 export default connect(() => ({}), mapDispatchToProps)(SearchBar)

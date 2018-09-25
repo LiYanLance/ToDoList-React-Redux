@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import "../style.css"
 import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from "react-bootstrap";
 import {Redirect} from "react-router";
-import requestAccessToken from "../../../webHander/loginHandler";
-import registerToServer from "../../../webHander/userHandler"
+// import requestAccessToken from "../../../api/loginHandler";
+// import registerToServer from "../../../api/userService"
 
 export default class LoginView extends Component {
 
@@ -36,8 +36,8 @@ export default class LoginView extends Component {
 
                             <FormGroup>
                                 <Col smOffset={2} sm={10}>
-                                    <Button bsStyle="primary" onClick={() => this.login()}>LOGIN</Button>
-                                    <Button type="submit" onClick={() => this.register()}>REGISTER</Button>
+                                    <Button bsStyle="primary" onClick={() => this.props.onLogin(this.getUser())}>LOGIN</Button>
+                                    <Button type="submit" onClick={() => this.props.register(this.getUser())}>REGISTER</Button>
                                 </Col>
                             </FormGroup>
                         </Form>
@@ -49,16 +49,16 @@ export default class LoginView extends Component {
             </div>
         )
     }
+    //
+    // login() {
+    //     const user = this.getUser();
+    //     requestAccessToken(user, this.props.onLogin);
+    // }
 
-    login() {
-        const user = this.getUser();
-        requestAccessToken(user, this.props.onLogin);
-    }
-
-    register() {
-        const user = this.getUser();
-        registerToServer(user);
-    }
+    // register() {
+    //     const user = this.getUser();
+    //     registerToServer(user);
+    // }
 
     getUser() {
         return {name: this.username.value, password: this.password.value};

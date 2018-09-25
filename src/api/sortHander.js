@@ -17,8 +17,3 @@ const sortFromAPIServer = (todoCallback, field, direction = "asc") => {
             todoCallback(todos)
         })
 }
-
-
-export {
-    sortFromAPIServer
-}

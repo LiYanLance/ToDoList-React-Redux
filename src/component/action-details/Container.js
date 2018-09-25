@@ -11,5 +11,4 @@ const mapDispatchToProps = dispatch => ({
     onUpdateItem : newItem => dispatch({type: "UPDATE_ITEM", item: newItem}),
 })
 
-// export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(View))
-export default connect(mapStateToProps, mapDispatchToProps)(View)
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(View))

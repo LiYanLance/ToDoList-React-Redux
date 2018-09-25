@@ -4,8 +4,6 @@ import "../style.css"
 import ActionAddModal from "../../action-dialog"
 import {Link} from "react-router-dom";
 import SearchBar from "../../search-bar"
-import {getTodosFromAPIServer, deleteTodosFromAPIServer} from "../../../webHander/todoHandler";
-import {sortFromAPIServer} from "../../../webHander/sortHander"
 
 export default class View extends Component {
 
@@ -22,17 +20,12 @@ export default class View extends Component {
         }
     }
 
-    componentDidMount() {
-        getTodosFromAPIServer(this.props.loadItems)
+    componentWillMount() {
+        this.props.loadItems();
     }
 
-
     render() {
-
-        console.log(this.props.items)
-
         const items = this.props.items.content || [];
-
         return (
             <div>
                 <div className="to-do-list">
@@ -62,7 +55,7 @@ export default class View extends Component {
                                     <td>
                                         <span>
                                             <Link to={`/action/${item.id}`}>Details</Link>
-                                            <a href="#!" onClick={() => deleteTodosFromAPIServer(this.props.loadItems, item.id)}>Delete</a>
+                                            <a href="#!" onClick={() => this.props.onDeleteItem(item.id)}>Delete</a>
                                         </span>
                                     </td>
                                 </tr>
@@ -75,12 +68,12 @@ export default class View extends Component {
                         <div>
                             {
                                 !this.props.items.first &&
-                                <button onClick={() => getTodosFromAPIServer(this.props.loadItems, this.props.items.number - 1, this.props.items)}>
+                                <button onClick={() => this.props.loadItems(this.props.items.number - 1, this.props.items)}>
                                     上一页</button>
                             }
                             {
                                 !this.props.items.last &&
-                                <button onClick={() => getTodosFromAPIServer(this.props.loadItems, this.props.items.number + 1, this.props.items)}>
+                                <button onClick={() => this.props.loadItems(this.props.items.number + 1, this.props.items)}>
                                     下一页</button>
                             }
                             <span>第 {this.props.items.number + 1} 页, 共 {this.props.items.totalPages} 页</span>
@@ -99,28 +92,22 @@ export default class View extends Component {
     sortByField(target) {
         if (target.title) {
             if (target.className.includes("to-do-list-title-asc")) {
-                // this.props.sortItemsDesc(target.title)
-                sortFromAPIServer(this.props.loadItems, target.title, "desc")
-                const stateObj = Object.assign({}, this.state.clazzNameOfTitle)
-                for (let field in stateObj) {
-                    stateObj[field] = stateObj[field].includes("active") ?
-                        stateObj[field].replace("-active", "") : stateObj[field]
-                }
-                stateObj[target.title] = "to-do-list-title-desc-active";
-                this.setState({clazzNameOfTitle: stateObj});
+                this.props.onSort(target.title, "desc")
+                this.clearNonActiveElementSortSymbol(target.title, "desc");
             } else {
-                // this.props.sortItemsAsc(target.title)
-                sortFromAPIServer(this.props.loadItems, target.title, "asc")
-                const stateObj = Object.assign({}, this.state.clazzNameOfTitle)
-                for (let field in stateObj) {
-                    stateObj[field] = stateObj[field].includes("active") ?
-                        stateObj[field].replace("-active", "") : stateObj[field]
-                }
-                stateObj[target.title] = "to-do-list-title-asc-active";
-                this.setState({clazzNameOfTitle: stateObj});
+                this.props.onSort(target.title, "asc")
+                this.clearNonActiveElementSortSymbol(target.title, "asc");
             }
         }
     }
 
-
+    clearNonActiveElementSortSymbol(title, direction) {
+        const stateObj = Object.assign({}, this.state.clazzNameOfTitle)
+        for (let field in stateObj) {
+            stateObj[field] = stateObj[field].includes("active") ?
+                stateObj[field].replace("-active", "") : stateObj[field]
+        }
+        stateObj[title] = `to-do-list-title-${direction}-active`;
+        this.setState({clazzNameOfTitle: stateObj});
+    }
 }
