@@ -2,7 +2,6 @@ import View from "./component/View";
 import {connect} from "react-redux"
 import withAuthentication from '../../hoc/withAuthentication'
 import {sortFromTodoService, getTodosFromTodoService, deleteTodosFromTodoService} from "../../api/todoService";
-import {} from "../../api/todoService";
 
 function convertDate(timestamp) {
     const date = new Date(timestamp);

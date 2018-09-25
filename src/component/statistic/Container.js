@@ -4,7 +4,6 @@ import Action from "../../Action";
 
 const colorOfSatistic = ["#7472AE", "#4A9B7A", "#CB6627"];
 const daysToDuedate = ["Out of date", "In 1 day", "In 3 days"];
-// const actionStatus = ["TO DO", "In Progress", "Blocked"];
 const actionStatus = ["to do", "finished", "blocked"];
 
 const getStatisticDataOfStatus = (todos) => {
@@ -46,7 +45,6 @@ const getStatisticDataOfDueData = (state) => {
 
 
 const getDifferenceOfTwoDay = (dueDate, today) => {
-    // const dueD = new Date(dueDate.replace(new RegExp('-', 'g'), '/'));
     const one_day = 1000 * 60 * 60 * 24;
     const difference_ms = dueDate- today.getTime();
     return Math.ceil(difference_ms / one_day);

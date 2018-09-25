@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import "../style.css"
 import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from "react-bootstrap";
 import {Redirect} from "react-router";
-// import requestAccessToken from "../../../api/loginHandler";
-// import registerToServer from "../../../api/userService"
 
 export default class LoginView extends Component {
 
@@ -49,16 +47,6 @@ export default class LoginView extends Component {
             </div>
         )
     }
-    //
-    // login() {
-    //     const user = this.getUser();
-    //     requestAccessToken(user, this.props.onLogin);
-    // }
-
-    // register() {
-    //     const user = this.getUser();
-    //     registerToServer(user);
-    // }
 
     getUser() {
         return {name: this.username.value, password: this.password.value};

@@ -18,7 +18,6 @@ const mapStateToProps = ({tags}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    // loadItems: payload => dispatch({type: "LOAD_ITEMS", payload: payload}),
     loadTags: () => getTagsFromTodoService(dispatch),
     onAddItem: (todo) => addTodosToTodoService(dispatch, todo),
     onUpdateItem: (todo) => updateTodosToTodoService(dispatch, todo),
