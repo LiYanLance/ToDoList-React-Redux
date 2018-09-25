@@ -25,11 +25,14 @@ const mapStateToProps = ({items, isAuthenticated}) => ({
 
 const mapDispatchToProps = dispatch => ({
     loadItems: payload => dispatch({type: "LOAD_ITEMS", payload: payload}),
+
+
+
     onDeleteItem: id => dispatch({type: "REMOVE_ITEM", id: id}),
     sortItemsAsc: field => dispatch({type: "ASC", field: field}), //fieldAscSort(filterVisibleItems(items), field),
     sortItemsDesc: field => dispatch({type: "DESC", field: field}), //fieldDescSort(filterVisibleItems(items), field)
     convertDate: (timestamp) => convertDate(timestamp)
 })
 
-// export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(View))
-export default connect(mapStateToProps, mapDispatchToProps)(View)
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(View))
+// export default connect(mapStateToProps, mapDispatchToProps)(View)

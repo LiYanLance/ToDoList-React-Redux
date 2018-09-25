@@ -5,7 +5,7 @@ import Action from "../../Action";
 const colorOfSatistic = ["#7472AE", "#4A9B7A", "#CB6627"];
 const daysToDuedate = ["Out of date", "In 1 day", "In 3 days"];
 // const actionStatus = ["TO DO", "In Progress", "Blocked"];
-const actionStatus = ["To Do", "Finished", "Blocked"];
+const actionStatus = ["to do", "finished", "blocked"];
 
 const getStatisticDataOfStatus = (todos) => {
     let map = new Map();
@@ -17,7 +17,7 @@ const getStatisticDataOfStatus = (todos) => {
     return Object.values(Action.STATUS)
         .filter(day => map.has(day))
         .map(stat => ({title: stat, value: map.get(stat),
-            color: colorOfSatistic[actionStatus.indexOf(stat)]}))
+            color: colorOfSatistic[actionStatus.indexOf(stat.toLowerCase())]}))
 }
 
 const getStatisticDataOfDueData = (state) => {

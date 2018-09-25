@@ -4,6 +4,7 @@ import Action from "../../../Action";
 import Select from 'react-select';
 import "../style.css"
 import {Link} from "react-router-dom";
+import {addTodosToAPIServer, updateTodosToAPIServer, getTagsFromAPIServer} from "../../../webHander/todoHandler";
 
 class ActionInfo extends Component {
 
@@ -15,9 +16,15 @@ class ActionInfo extends Component {
         this.setState({selectedOption});
     }
 
+    componentDidMount(){
+        getTagsFromAPIServer(this.props.loadTags)
+    }
+
     render() {
 
         let {selectedOption} = this.state;
+
+        console.log(this.props.allTags)
 
         return (
             <div>
@@ -32,7 +39,7 @@ class ActionInfo extends Component {
                         <div><input id="name" type="text" ref={(input) => this.name = input}
                                     defaultValue={this.props.item.name} placeholder="action name"/></div>
                         <div><input id="date" type="date" ref={(ref) => this.dueDate = ref}
-                                    defaultValue={this.props.item.dueDate}/></div>
+                                    defaultValue={this.props.convertDate(this.props.item.dueDate)}/></div>
                         <div><select id="status" ref={(ref) => this.status = ref} defaultValue={this.props.item.status}>
                             {
                                 Object.keys(Action.STATUS).map(key =>
@@ -64,7 +71,8 @@ class ActionInfo extends Component {
                                 this.props.closeModal()
                             }}>CANCEL</Button>
                             <Button bsStyle="primary" onClick={() => {
-                                this.props.onAddItem(this.getNewItemInfo())
+                                addTodosToAPIServer(this.props.loadItems, this.getNewItemInfo())
+                                // this.props.onAddItem(this.getNewItemInfo())
                                 this.props.closeModal();
                             }}>OK
                             </Button>
@@ -76,7 +84,8 @@ class ActionInfo extends Component {
                             </Link>
                             <Link to="/">
                                 <Button bsStyle="primary" onClick={ () =>{
-                                    this.props.onUpdateItem(this.getNewItemInfo())
+                                    updateTodosToAPIServer(this.props.loadItems, this.getNewItemInfo())
+                                    //this.props.onUpdateItem(this.getNewItemInfo())
                                 }}>OK</Button>
                             </Link>
                         </div>
@@ -93,9 +102,9 @@ class ActionInfo extends Component {
     getNewItemInfo() {
         let newItem =
             {
-                name: this.name.value,
-                dueDate: this.dueDate.value,
-                status: this.status.value,
+                name: this.name.value || "",
+                dueDate: this.dueDate.value || "",
+                status: this.status.value || "To Do",
                 tags: this.state.selectedOption.map(tag => tag.label)
             };
         if (!this.isAddition()) {

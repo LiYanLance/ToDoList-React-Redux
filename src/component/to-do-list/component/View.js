@@ -5,6 +5,7 @@ import ActionAddModal from "../../action-dialog"
 import {Link} from "react-router-dom";
 import SearchBar from "../../search-bar"
 import {getTodosFromAPIServer, deleteTodosFromAPIServer} from "../../../webHander/todoHandler";
+import {sortFromAPIServer} from "../../../webHander/sortHander"
 
 export default class View extends Component {
 
@@ -74,15 +75,15 @@ export default class View extends Component {
                         <div>
                             {
                                 !this.props.items.first &&
-                                <button onClick={() => getTodosFromAPIServer(this.props.loadItems, this.props.items.number - 1)}>
+                                <button onClick={() => getTodosFromAPIServer(this.props.loadItems, this.props.items.number - 1, this.props.items)}>
                                     上一页</button>
                             }
                             {
                                 !this.props.items.last &&
-                                <button onClick={() => getTodosFromAPIServer(this.props.loadItems, this.props.items.number + 1)}>
+                                <button onClick={() => getTodosFromAPIServer(this.props.loadItems, this.props.items.number + 1, this.props.items)}>
                                     下一页</button>
                             }
-                            <span>{" "}第 {this.props.items.number} 页, 共 {this.props.items.totalPages} 页</span>
+                            <span>第 {this.props.items.number + 1} 页, 共 {this.props.items.totalPages} 页</span>
                         </div>
                     }
                     <button className="to-do-list-btn" onClick={() => this.setState({showAddModal: true})}>ADD</button>
@@ -98,7 +99,8 @@ export default class View extends Component {
     sortByField(target) {
         if (target.title) {
             if (target.className.includes("to-do-list-title-asc")) {
-                this.props.sortItemsDesc(target.title)
+                // this.props.sortItemsDesc(target.title)
+                sortFromAPIServer(this.props.loadItems, target.title, "desc")
                 const stateObj = Object.assign({}, this.state.clazzNameOfTitle)
                 for (let field in stateObj) {
                     stateObj[field] = stateObj[field].includes("active") ?
@@ -107,7 +109,8 @@ export default class View extends Component {
                 stateObj[target.title] = "to-do-list-title-desc-active";
                 this.setState({clazzNameOfTitle: stateObj});
             } else {
-                this.props.sortItemsAsc(target.title)
+                // this.props.sortItemsAsc(target.title)
+                sortFromAPIServer(this.props.loadItems, target.title, "asc")
                 const stateObj = Object.assign({}, this.state.clazzNameOfTitle)
                 for (let field in stateObj) {
                     stateObj[field] = stateObj[field].includes("active") ?

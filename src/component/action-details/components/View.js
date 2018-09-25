@@ -7,7 +7,7 @@ export default class View extends Component {
 
     render() {
 
-        const itemRef = this.props.items.find(item => item.id === parseInt(this.props.match.params.id,10));
+        const itemRef = this.props.items.find(item => item.id === parseInt(this.props.match.params.id, 10));
         const item = Object.assign({}, itemRef);
         return (
             <div>

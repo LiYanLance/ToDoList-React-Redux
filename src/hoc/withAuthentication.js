@@ -18,7 +18,7 @@ import {connect} from "react-redux";
 const withAuthentication = (WrappedComponent) => {
     const View = (props) => {
         const {token, ...rest} = props;
-        alert("hoc" + token)
+        alert("hoc  " + token)
         return (
             <div>
                 {!token && <Redirect to="/login"/>}

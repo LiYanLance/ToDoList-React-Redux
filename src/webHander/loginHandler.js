@@ -10,13 +10,12 @@ export default function requestAccessToken(user, loginCallback) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        }
-        ,
+        },
         body: loginInfo
     })
         .then((response) => response.headers.get("token"))
         .then(token => {
-            alert("API   " + token)
+            alert("fetch   " + token)
             loginCallback(token);
         });
 }

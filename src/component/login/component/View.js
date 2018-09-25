@@ -3,15 +3,15 @@ import "../style.css"
 import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from "react-bootstrap";
 import {Redirect} from "react-router";
 import requestAccessToken from "../../../webHander/loginHandler";
+import registerToServer from "../../../webHander/userHandler"
 
 export default class LoginView extends Component {
 
     render() {
-        const token = this.props.token;
         return (
             <div>
                 {
-                    ! token &&
+                    ! this.props.token &&
                     <div className="login-box">
                         <Form horizontal>
                             <FormGroup controlId="formHorizontalEmail">
@@ -36,22 +36,33 @@ export default class LoginView extends Component {
 
                             <FormGroup>
                                 <Col smOffset={2} sm={10}>
-                                    <Button type="submit" onClick={() => this.authenticate()}>LOGIN</Button>
-                                    <Button type="submit" onClick={() => alert("I gotta nothing to do")}>CANCEL</Button>
+                                    <Button bsStyle="primary" onClick={() => this.login()}>LOGIN</Button>
+                                    <Button type="submit" onClick={() => this.register()}>REGISTER</Button>
                                 </Col>
                             </FormGroup>
                         </Form>
                     </div>
                 }
                 {
-                    token && <Redirect to="/"/>
+                    this.props.token && <Redirect to="/"/>
                 }
             </div>
         )
     }
 
-    authenticate() {
-        const user = {name: this.username.value, password: this.password.value};
+    login() {
+        const user = this.getUser();
         requestAccessToken(user, this.props.onLogin);
     }
+
+    register() {
+        const user = this.getUser();
+        registerToServer(user);
+    }
+
+    getUser() {
+        return {name: this.username.value, password: this.password.value};
+    }
+
 }
+
